@@ -9,7 +9,7 @@
 - Unauthorized destination port
 ## Table Schema
 ![table schema](img/table_schema.png)
-- `ts`: formatted timestamp using VPC_START
+- `ts`: formatted timestamp using `VPC_START`
 - `day_part`: partition/ interval within the day (e.g. if consider 30-min
   interval, a day has 48 partitions)
 ## Lookup Queries
@@ -56,11 +56,17 @@ SELECT COUNT(*) FROM VPCFLOWLOG_ANLY WHERE [[CONDITIONS]];
 ```sql
 SELECT COUNT(*) FROM VPCFLOWLOG_ANLY
 WHERE count > avg_count + stddev_count OR count < avg_count - stddev_count;
+
+SELECT COUNT(*) FROM VPCFLOWLOG_ANLY WHERE count > avg_count + stddev_count;
+
+SELECT COUNT(*) FROM VPCFLOWLOG_ANLY
+WHERE count > avg_count + 2 * stddev_count
+OR count < avg_count - stddev_count;
 ```
 ### Rule: Rejected SSH connections more than 20 times within half an hour
 **View**
-- Filter the logs by destination port = 22 and action = 'reject'
-- Group by day, interval within the day, and source address
+- Filter the logs by destination port = 22 and action = `reject`
+- Group by `day`, interval within the day, and source address
 
 **Experiment**:
 - Group by produces a view of 284K rows
