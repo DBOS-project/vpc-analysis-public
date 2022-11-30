@@ -18,8 +18,11 @@
 
 ## Connect to database
 ```
-ssh -i deere-jd.pem ubuntu@ec2-100-24-25-169.compute-1.amazonaws.com
+ssh -i id_jd ubuntu@ec2-100-24-25-169.compute-1.amazonaws.com
 docker exec -it vertica_ce /opt/vertica/bin/vsql
+
+# test query
+select count(*) from VPCFLOWLOG_TEST; # --> should return 17373056
 ```
 
 ## Look-up Queries
