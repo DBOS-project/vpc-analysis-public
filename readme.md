@@ -23,6 +23,8 @@ docker exec -it vertica_ce /opt/vertica/bin/vsql
 
 # test query
 select count(*) from VPCFLOWLOG_TEST; # --> should return 17373056
+
+# to exit the database terminal, type \q and then ENTER
 ```
 
 ## Look-up Queries
